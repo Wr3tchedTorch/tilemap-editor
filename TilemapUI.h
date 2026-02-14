@@ -5,6 +5,8 @@
 class TilemapUI
 {
 private:
+	Tilemap m_Tilemap;
+
 	std::string  m_FilepathCurrentLevel;
 	std::string  m_FilepathTilemap;
 
@@ -20,10 +22,10 @@ private:
 	void drawTilemapUI();
 
 public:
-	TilemapUI(const sf::Window& window);
+	TilemapUI(const sf::Window& window, std::string filepathTilemap, std::string filepathLevel);
 
-	void placeTile(sf::Vector2f globalMousePosition);
-	void removeTile(sf::Vector2f globalMousePosition);
+	void leftMouseButtonPressed();
+	void rightMouseButtonPressed();
 
 	void placeTiles(sf::FloatRect globalMousePosition);
 	void removeTiles(sf::FloatRect globalMousePosition);

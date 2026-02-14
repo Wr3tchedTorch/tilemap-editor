@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 #include <vector>
+#include "Tile.h"
 
 class Tilemap : public sf::Drawable
 {
@@ -12,7 +13,11 @@ private:
     const sf::Texture& m_Texture;
     sf::VertexArray m_Vertices;
     
-    std::vector<std::vector<int>> m_ArrayLevel;
+    std::vector<Tile> m_ArrayLevel;
+
+    sf::Vector2u m_LevelSize;
+
+    Tile m_FillTile;
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
@@ -20,9 +25,14 @@ private:
         target.draw(m_Vertices, states);
     }
 
+    void resizeLevel(sf::Vector2u toLevelSize);
 public:	
     Tilemap(const sf::Texture& texture, std::string levelFilePath);
-
-    std::vector<std::vector<int>> loadLevel(std::string levelFilePath);
+    
+    void setLevelSize(sf::Vector2u levelSize);
+    void setFillTile(Tile fillTile);
+    
+    void placeTile(sf::Vector2i gridPosition, Tile tile);
+    void removeTile(sf::Vector2i gridPosition);
 };
 

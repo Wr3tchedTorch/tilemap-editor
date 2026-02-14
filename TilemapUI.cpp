@@ -6,8 +6,21 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <iostream>
 
-TilemapUI::TilemapUI(const sf::Window& window) : m_Window(window)
+TilemapUI::TilemapUI(const sf::Window& window, std::string filepathTilemap, std::string filepathLevel) :
+	m_Window(window),
+	m_TextureTilemap(&TextureHolder::GetTexture(filepathTilemap)),
+	m_Tilemap(*m_TextureTilemap, filepathLevel)
 {
+}
+
+void TilemapUI::leftMouseButtonPressed()
+{
+	m_Tilemap.placeTile(m_GridMousePosition);
+}
+
+void TilemapUI::rightMouseButtonPressed()
+{
+	m_Tilemap.removeTile(m_GridMousePosition);
 }
 
 void TilemapUI::loadTilemap(std::string filepathTilemap, int tileSize)
