@@ -13,14 +13,22 @@ private:
 	int m_TileSize;
 	sf::Vector2i m_TilemapSize;
 	sf::Vector2i m_GridMousePosition;
+	sf::Vector2i m_SelectedTile;
 
 	const sf::Window& m_Window;
+
+	void drawTilemapUI();
 
 public:
 	TilemapUI(const sf::Window& window);
 
-	void loadTilemap(std::string filepathTilemap, int tileSize);
-	
+	void placeTile(sf::Vector2f globalMousePosition);
+	void removeTile(sf::Vector2f globalMousePosition);
+
+	void placeTiles(sf::FloatRect globalMousePosition);
+	void removeTiles(sf::FloatRect globalMousePosition);
+
+	void loadTilemap(std::string filepathTilemap, int tileSize);	
 	void loadExistingLevel(std::string filepathLevel);	
 	void saveCurrentLevel();
 

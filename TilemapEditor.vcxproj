@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="DrawTilemapUI.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
