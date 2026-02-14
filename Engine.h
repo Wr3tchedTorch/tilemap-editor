@@ -11,6 +11,7 @@ private:
 	TilemapUI m_TilemapUI;
 
 	sf::RenderWindow m_Window;
+	sf::View  m_MainView;
 	sf::Color m_ColorBackground;
 
 	void input();

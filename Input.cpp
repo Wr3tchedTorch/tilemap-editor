@@ -12,11 +12,37 @@ void Engine::input()
 		{
 			m_Window.close();
 		}
-		if (const auto& keyPressed = event->getIf<sf::Event::KeyPressed>())
+		else if (const auto& keyPressed = event->getIf<sf::Event::KeyPressed>())
 		{
 			if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
 			{
 				m_Window.close();
+			}
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::Up)
+			{
+				m_MainView.zoom(0.9f);
+			}
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::Down)
+			{
+				m_MainView.zoom(1.1f);
+			}
+
+			if (keyPressed->scancode == sf::Keyboard::Scancode::W)
+			{
+				m_MainView.move({0, -20});
+			}
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::S)
+			{
+				m_MainView.move({ 0, 20 });
+			}
+
+			if (keyPressed->scancode == sf::Keyboard::Scancode::A)
+			{
+				m_MainView.move({ -20, 0 });
+			}
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::D)
+			{
+				m_MainView.move({ 20, 0 });
 			}
 		}
 	}

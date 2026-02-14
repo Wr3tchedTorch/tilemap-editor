@@ -2,11 +2,11 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-Engine::Engine()
+Engine::Engine() : m_TilemapUI(m_Window)
 {
 	m_ColorBackground = sf::Color::Black;
 
-	m_TilemapUI.loadTilemapTexture("graphics/tilemap.png");
+	m_TilemapUI.loadTilemap("graphics/tilemap.png", 16);
 }
 
 void Engine::run()
@@ -14,6 +14,13 @@ void Engine::run()
 	sf::VideoMode vm = sf::VideoMode::getDesktopMode();
 	m_Window.create(vm, "Tilemap editor by Eric", sf::State::Fullscreen);
 	ImGui::SFML::Init(m_Window);
+
+	m_MainView.setSize(sf::Vector2f(vm.size));
+
+	sf::Vector2f vmHalfSize(vm.size);
+	vmHalfSize.x /= 2;
+	vmHalfSize.y /= 2;
+	m_MainView.setCenter(vmHalfSize);
 
 	sf::Clock deltaClock;
 	while (m_Window.isOpen())

@@ -1,23 +1,30 @@
 #pragma once
 #include "Tilemap.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class TilemapUI
 {
 private:
-	Tilemap Tilemap;
-	
 	std::string  m_FilepathCurrentLevel;
 	std::string  m_FilepathTilemap;
 
 	const sf::Texture* m_TextureTilemap;
 
-public:
-	TilemapUI();
+	int m_TileSize;
+	sf::Vector2i m_TilemapSize;
+	sf::Vector2i m_GridMousePosition;
 
-	void loadTilemapTexture(std::string filepathTilemap);
-	void loadExistingLevel(std::string filepathLevel);
+	const sf::Window& m_Window;
+
+public:
+	TilemapUI(const sf::Window& window);
+
+	void loadTilemap(std::string filepathTilemap, int tileSize);
 	
+	void loadExistingLevel(std::string filepathLevel);	
 	void saveCurrentLevel();
+
+	void update(sf::Vector2f mapWorldPosition);
 
 	void render();
 };
