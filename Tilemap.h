@@ -19,13 +19,16 @@ private:
 
     Tile m_FillTile;
 
+    std::string m_FilepathLevel;
+
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         states.texture = &m_Texture;
         target.draw(m_Vertices, states);
     }
 
-    void resizeLevel(sf::Vector2u toLevelSize);
+    void trimTilemap();
+
 public:	
     Tilemap(const sf::Texture& texture, std::string levelFilePath);
     
@@ -34,5 +37,11 @@ public:
     
     void placeTile(sf::Vector2i gridPosition, Tile tile);
     void removeTile(sf::Vector2i gridPosition);
+
+    void loadLevelFromDisk(std::string filepathLevel);
+    void saveLevelToDisk();
+
+    
+    std::string levelToString();
 };
 

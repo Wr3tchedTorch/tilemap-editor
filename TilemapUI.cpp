@@ -15,12 +15,12 @@ TilemapUI::TilemapUI(const sf::Window& window, std::string filepathTilemap, std:
 
 void TilemapUI::leftMouseButtonPressed()
 {
-	m_Tilemap.placeTile(m_GridMousePosition);
+	//m_Tilemap.placeTile(m_GridMousePosition);
 }
 
 void TilemapUI::rightMouseButtonPressed()
 {
-	m_Tilemap.removeTile(m_GridMousePosition);
+	//m_Tilemap.removeTile(m_GridMousePosition);
 }
 
 void TilemapUI::loadTilemap(std::string filepathTilemap, int tileSize)

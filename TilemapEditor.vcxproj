@@ -140,10 +140,13 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LoadLevelFromDisk.cpp" />
+    <ClCompile Include="SaveLevelToDisk.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="Tilemap.cpp" />
-    <ClCompile Include="TilemapEditor.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="TilemapUI.cpp" />
+    <ClCompile Include="TrimTilemap.cpp" />
     <ClCompile Include="Update.cpp" />
   </ItemGroup>
   <ItemGroup>

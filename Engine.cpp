@@ -2,7 +2,7 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-Engine::Engine() : m_TilemapUI(m_Window)
+Engine::Engine() : m_TilemapUI(m_Window, "foo.png", "foo.dat")
 {
 	m_ColorBackground = sf::Color::Black;
 
