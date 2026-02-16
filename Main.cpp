@@ -15,8 +15,7 @@ int main()
 
 	map.saveLevelToDisk();
 
-	std::cout << map.levelToString();
-
+	std::cout << map.levelToString();	
 
 	//Engine engine;
 

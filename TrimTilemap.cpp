@@ -28,7 +28,12 @@ void Tilemap::trimTilemap()
 		return;
 	}
 
+	int newWidth  = lastColWithValues + 1;
+	int newHeight = lastRowWithValues + 1;
+
 	std::vector<Tile> newArray;
+	newArray.reserve(static_cast<size_t>(newWidth) * newHeight);
+
 	for (int row = 0; row <= lastRowWithValues; ++row)
 	{
 		for (int col = 0; col <= lastColWithValues; ++col)
@@ -38,4 +43,5 @@ void Tilemap::trimTilemap()
 	}
 
 	m_ArrayLevel = newArray;
+	m_LevelSize = { static_cast<unsigned int>(newWidth), static_cast<unsigned int>(newHeight) };
 }
