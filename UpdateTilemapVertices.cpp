@@ -10,7 +10,7 @@ void Tilemap::updateVertices()
 	{
 		for (int x = 0; x < m_LevelSize.x; ++x)
 		{
-			int TILE_INDEX = m_ArrayLevel[x + static_cast<size_t>(y) * m_LevelSize.x].m_Id;
+			int TILE_INDEX = m_ArrayLevel[x + static_cast<size_t>(y) * m_LevelSize.x].Id;
 			if (TILE_INDEX == -1)
 			{
 				currentVertex += VERTICES_PER_TILE;

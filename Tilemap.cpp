@@ -5,7 +5,7 @@
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
 {	
-	m_FillTile.m_Id = 0;
+	m_FillTile.Id= 0;
 	m_FilepathLevel = levelFilePath;
 	m_TilemapSize   = tilemapSize;
 
@@ -15,11 +15,32 @@ Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vect
 	updateVertices();
 }
 
-void Tilemap::setLevelSize(sf::Vector2u levelSize)
+void Tilemap::increaseLevelSize(sf::Vector2u levelSize)
 {
+	if (levelSize.x < m_LevelSize.x || levelSize.y < m_LevelSize.y)
+	{
+		return;
+	}
+
 	size_t newSize = static_cast<size_t>(levelSize.x) * levelSize.y;
 
-	m_ArrayLevel.resize(newSize, m_FillTile);
+	std::vector<Tile> toArrayLevel;
+	toArrayLevel.resize(newSize, m_FillTile); 
+
+	for (int y = 0; y < m_LevelSize.y; ++y)
+	{
+		for (int x = 0; x < m_LevelSize.x; ++x)
+		{
+			Tile tile = m_ArrayLevel[x + static_cast<size_t>(y) * m_LevelSize.x];			
+			if (tile.Id == m_FillTile.Id)
+			{
+				continue;
+			}
+			toArrayLevel[x + static_cast<size_t>(y) * levelSize.x] = tile;
+		}
+	}
+
+	m_ArrayLevel = toArrayLevel;
 	m_LevelSize = levelSize;
 
 	updateVertices();
@@ -50,7 +71,7 @@ void Tilemap::placeTile(sf::Vector2i gridPosition, Tile tile)
 		sf::Vector2u toLevelSize = m_LevelSize;
 		toLevelSize.x = isXOutOfBounds ? gridPosition.x + 1 : toLevelSize.x;
 		toLevelSize.y = isYOutOfBounds ? gridPosition.y + 1 : toLevelSize.y;
-		setLevelSize(toLevelSize);
+		increaseLevelSize(toLevelSize);
 	}
 
 	m_ArrayLevel[gridPosition.x + static_cast<size_t>(gridPosition.y) * m_LevelSize.x] = tile;
@@ -74,7 +95,7 @@ std::string Tilemap::levelToString()
 	std::string result;
 	for (int i = 0; i < m_ArrayLevel.size(); ++i)
 	{
-		std::string id = std::to_string(m_ArrayLevel[i].m_Id);
+		std::string id = std::to_string(m_ArrayLevel[i].Id);
 		result += id;
 
 		if (i < m_ArrayLevel.size() - 1)

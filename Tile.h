@@ -2,5 +2,5 @@
 
 struct Tile
 {
-	int m_Id;
+	int Id;
 };

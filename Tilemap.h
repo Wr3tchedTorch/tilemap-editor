@@ -37,7 +37,7 @@ private:
 public:	
     Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize);
     
-    void setLevelSize(sf::Vector2u levelSize);
+    void increaseLevelSize(sf::Vector2u levelSize);
     void setFillTile(Tile fillTile);
     void setTileSize(sf::Vector2u tileSize);
     
