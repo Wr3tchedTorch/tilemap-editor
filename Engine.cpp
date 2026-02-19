@@ -15,11 +15,15 @@ void Engine::run()
 	ImGui::SFML::Init(m_Window);
 
 	m_MainView.setSize(sf::Vector2f(vm.size));
+	m_MainView.zoom(0.5f);
 
 	sf::Vector2f vmHalfSize(vm.size);
 	vmHalfSize.x /= 2;
 	vmHalfSize.y /= 2;
-	m_MainView.setCenter(vmHalfSize);
+	m_MainView.setCenter({
+		vmHalfSize.x - m_MainView.getSize().x / 2,
+		vmHalfSize.y - m_MainView.getSize().y / 2
+	});
 
 	sf::Clock deltaClock;
 	while (m_Window.isOpen())

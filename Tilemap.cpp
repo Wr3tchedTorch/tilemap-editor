@@ -2,15 +2,16 @@
 #include <iostream>
 #include <fstream>
 
-Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u m_TileSize) :
+Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize) :
 	m_Texture(texture)
 {	
 	m_FillTile.m_Id = 0;
 	m_FilepathLevel = levelFilePath;
 
-	m_TileSize = m_TileSize;
+	m_TileSize = tileSize;
 
 	loadLevelFromDisk(m_FilepathLevel);
+	updateVertices();
 }
 
 void Tilemap::setLevelSize(sf::Vector2u levelSize)
@@ -18,8 +19,9 @@ void Tilemap::setLevelSize(sf::Vector2u levelSize)
 	size_t newSize = static_cast<size_t>(levelSize.x) * levelSize.y;
 
 	m_ArrayLevel.resize(newSize, m_FillTile);
-
 	m_LevelSize = levelSize;
+
+	updateVertices();
 }
 
 void Tilemap::setFillTile(Tile fillTile)
@@ -51,6 +53,7 @@ void Tilemap::placeTile(sf::Vector2i gridPosition, Tile tile)
 	}
 
 	m_ArrayLevel[gridPosition.x + static_cast<size_t>(gridPosition.y) * m_LevelSize.x] = tile;
+	updateVertices();
 }
 
 void Tilemap::removeTile(sf::Vector2i gridPosition)
@@ -62,6 +65,7 @@ void Tilemap::removeTile(sf::Vector2i gridPosition)
 	}
 
 	m_ArrayLevel[gridPosition.x + static_cast<size_t>(gridPosition.y) * m_LevelSize.x] = m_FillTile;
+	updateVertices();
 }
 
 std::string Tilemap::levelToString()

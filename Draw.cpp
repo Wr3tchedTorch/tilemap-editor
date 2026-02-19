@@ -12,9 +12,6 @@ void Engine::draw()
 	m_Window.setView(m_MainView);
 
 	m_Window.draw(m_Tilemap);
-
-	sf::RectangleShape shape({ 16, 16 });
-	m_Window.draw(shape);
 	
 	ImGui::SFML::Render(m_Window);
 	m_Window.display();
