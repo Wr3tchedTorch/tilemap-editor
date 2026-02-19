@@ -3,6 +3,7 @@
 void Tilemap::updateVertices()
 {
 	m_Vertices.setPrimitiveType(sf::PrimitiveType::Triangles);
+	m_Vertices.clear();
 	m_Vertices.resize(static_cast<size_t>(m_LevelSize.x) * m_LevelSize.y * VERTICES_PER_TILE);
 
 	size_t currentVertex = 0;
@@ -14,11 +15,6 @@ void Tilemap::updateVertices()
 
 			if (TILE_INDEX == -1)
 			{
-				for (int i = 0; i < VERTICES_PER_TILE; ++i)
-				{
-					m_Vertices[currentVertex + i].position = {0, 0};
-					m_Vertices[currentVertex + i].color	   = sf::Color::Red;
-				}
 				currentVertex += VERTICES_PER_TILE;
 				continue;
 			}
