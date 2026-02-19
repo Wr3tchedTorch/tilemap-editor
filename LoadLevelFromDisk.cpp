@@ -20,7 +20,8 @@ void Tilemap::loadLevelFromDisk(std::string filepathLevel)
 	{
 		width = 0;
 		std::string cell;
-		while (std::getline(inputFile, cell, ','))
+		std::stringstream stream(line);
+		while (std::getline(stream, cell, ','))
 		{			
 			if (cell.empty())
 			{

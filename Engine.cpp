@@ -7,10 +7,10 @@ Engine::Engine() :
 {
 	m_ColorBackground = sf::Color::Black;	
 
-	m_Tilemap.setFillTile(Tile{ -1 });
-	m_Tilemap.placeTile({ 7, 7 }, Tile { 39 });
+	//m_Tilemap.setFillTile(Tile{ 1 });
+	//m_Tilemap.placeTile({ 7, 7 }, Tile { 39 });
 
-	m_Tilemap.saveLevelToDisk();
+	//m_Tilemap.saveLevelToDisk();
 }
 
 void Engine::run()
