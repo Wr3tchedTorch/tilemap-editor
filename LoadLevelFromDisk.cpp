@@ -19,9 +19,15 @@ void Tilemap::loadLevelFromDisk(std::string filepathLevel)
 	while (std::getline(inputFile, line))
 	{
 		width = 0;
-		for (char letter : line)
-		{
-			int tileId = letter - '0';
+		std::string cell;
+		while (std::getline(inputFile, cell, ','))
+		{			
+			if (cell.empty())
+			{
+				continue;
+			}
+
+			int tileId = std::stoi(cell);
 			m_ArrayLevel.push_back(Tile{ tileId });
 
 			width++;

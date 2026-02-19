@@ -74,8 +74,14 @@ std::string Tilemap::levelToString()
 	std::string result;
 	for (int i = 0; i < m_ArrayLevel.size(); ++i)
 	{
-		char letter = m_ArrayLevel[i].m_Id + '0';
-		result += letter;
+		std::string id = std::to_string(m_ArrayLevel[i].m_Id);
+		result += id;
+
+		if (i < m_ArrayLevel.size() - 1)
+		{
+			result += ",";
+		}
+
 		if (i != 0 && (i + 1) % m_LevelSize.x == 0)
 		{
 			result += "\n";
