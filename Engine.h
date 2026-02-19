@@ -8,7 +8,8 @@ class Engine
 {
 private:
 	TextureHolder m_TextureHolderSingleton;
-	TilemapUI m_TilemapUI;
+
+	Tilemap m_Tilemap;
 
 	sf::RenderWindow m_Window;
 	sf::View  m_MainView;

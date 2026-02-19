@@ -2,11 +2,10 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-Engine::Engine() : m_TilemapUI(m_Window, "foo.png", "foo.dat")
+Engine::Engine() :
+	m_Tilemap(TextureHolder::GetTexture("graphics/tilemap.png"), "levels/test.dat", {16, 16})
 {
-	m_ColorBackground = sf::Color::Black;
-
-	m_TilemapUI.loadTilemap("graphics/tilemap.png", 16);
+	m_ColorBackground = sf::Color::Black;	
 }
 
 void Engine::run()

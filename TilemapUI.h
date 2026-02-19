@@ -5,8 +5,6 @@
 class TilemapUI
 {
 private:
-	Tilemap m_Tilemap;
-
 	std::string  m_FilepathCurrentLevel;
 	std::string  m_FilepathTilemap;
 

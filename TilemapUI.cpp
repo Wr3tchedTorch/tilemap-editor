@@ -8,8 +8,7 @@
 
 TilemapUI::TilemapUI(const sf::Window& window, std::string filepathTilemap, std::string filepathLevel) :
 	m_Window(window),
-	m_TextureTilemap(&TextureHolder::GetTexture(filepathTilemap)),
-	m_Tilemap(*m_TextureTilemap, filepathLevel)
+	m_TextureTilemap(&TextureHolder::GetTexture(filepathTilemap))
 {
 }
 

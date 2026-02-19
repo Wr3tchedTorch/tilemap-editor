@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 #include <SFML/System/Time.hpp>
+#include <iostream>
 
 void Engine::update(float delta)
 {		
@@ -9,5 +10,6 @@ void Engine::update(float delta)
 
 	sf::Vector2i screenMousePosition = sf::Mouse::getPosition();
 	sf::Vector2f globalMousePosition = m_Window.mapPixelToCoords(screenMousePosition, m_MainView);
-	m_TilemapUI.update(globalMousePosition);
+
+	std::cout << m_Tilemap.levelToString() << "\n";
 }

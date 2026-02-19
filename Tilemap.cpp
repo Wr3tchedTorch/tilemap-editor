@@ -2,11 +2,13 @@
 #include <iostream>
 #include <fstream>
 
-Tilemap::Tilemap(const sf::Texture& texture, std::string filePathLevel) :
+Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u m_TileSize) :
 	m_Texture(texture)
 {	
 	m_FillTile.m_Id = 0;
-	m_FilepathLevel = filePathLevel;
+	m_FilepathLevel = levelFilePath;
+
+	m_TileSize = m_TileSize;
 
 	loadLevelFromDisk(m_FilepathLevel);
 }
@@ -23,6 +25,11 @@ void Tilemap::setLevelSize(sf::Vector2u levelSize)
 void Tilemap::setFillTile(Tile fillTile)
 {
 	m_FillTile = fillTile;
+}
+
+void Tilemap::setTileSize(sf::Vector2u tileSize)
+{
+	m_TileSize = tileSize;
 }
 
 void Tilemap::placeTile(sf::Vector2i gridPosition, Tile tile)

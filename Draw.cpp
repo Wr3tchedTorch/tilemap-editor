@@ -7,15 +7,11 @@
 
 void Engine::draw()
 {
-	m_Window.clear(m_ColorBackground);		
-
-	ImGui::Begin("Tilemap editor by Eric!");
-
-	m_TilemapUI.render();
-
-	ImGui::End();
+	m_Window.clear(m_ColorBackground);			
 
 	m_Window.setView(m_MainView);
+
+	m_Window.draw(m_Tilemap);
 
 	sf::RectangleShape shape({ 16, 16 });
 	m_Window.draw(shape);

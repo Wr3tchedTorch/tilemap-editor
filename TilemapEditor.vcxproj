@@ -148,6 +148,7 @@
     <ClCompile Include="TilemapUI.cpp" />
     <ClCompile Include="TrimTilemap.cpp" />
     <ClCompile Include="Update.cpp" />
+    <ClCompile Include="UpdateTilemapVertices.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
