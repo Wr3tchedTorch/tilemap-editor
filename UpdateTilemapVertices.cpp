@@ -30,8 +30,8 @@ void Tilemap::updateVertices()
 			m_Vertices[currentVertex + 4].position = { right, bottom };
 			m_Vertices[currentVertex + 5].position = { left,  bottom };
 
-			int textureX = TILE_INDEX % m_LevelSize.x;
-			int textureY = TILE_INDEX / m_LevelSize.x;
+			int textureX = TILE_INDEX % m_TilemapSize.x;
+			int textureY = TILE_INDEX / m_TilemapSize.x;
 
 			float textureTop    = textureY * m_TileSize.y;
 			float textureLeft   = textureX * m_TileSize.x;

@@ -2,11 +2,12 @@
 #include <iostream>
 #include <fstream>
 
-Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize) :
+Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
 {	
 	m_FillTile.m_Id = 0;
 	m_FilepathLevel = levelFilePath;
+	m_TilemapSize   = tilemapSize;
 
 	m_TileSize = tileSize;
 

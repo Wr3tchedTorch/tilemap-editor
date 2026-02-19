@@ -3,9 +3,14 @@
 #include "imgui-SFML.h"
 
 Engine::Engine() :
-	m_Tilemap(TextureHolder::GetTexture("graphics/tilemap.png"), "levels/test.dat", {16, 16})
+	m_Tilemap(TextureHolder::GetTexture("graphics/tilemap.png"), "levels/test.dat", { 16, 16 }, { 18, 13 })
 {
 	m_ColorBackground = sf::Color::Black;	
+
+	m_Tilemap.setFillTile(Tile{ -1 });
+	m_Tilemap.placeTile({ 7, 7 }, Tile { 39 });
+
+	m_Tilemap.saveLevelToDisk();
 }
 
 void Engine::run()

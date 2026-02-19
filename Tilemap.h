@@ -19,6 +19,7 @@ private:
 
     sf::Vector2u m_LevelSize;
     sf::Vector2u m_TileSize;
+    sf::Vector2u m_TilemapSize;
 
     Tile m_FillTile;
 
@@ -34,7 +35,7 @@ private:
     void trimTilemap();
 
 public:	
-    Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize);
+    Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize);
     
     void setLevelSize(sf::Vector2u levelSize);
     void setFillTile(Tile fillTile);
