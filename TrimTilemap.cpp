@@ -9,7 +9,7 @@ void Tilemap::trimTilemap()
 
 	for (int i = 0; i < m_ArrayLevel.size(); ++i)
 	{
-		if (m_ArrayLevel[i].Id!= 0)
+		if (m_ArrayLevel[i].Id != m_FillTile.Id)
 		{
 			foundAnyValues = true;
 

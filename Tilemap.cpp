@@ -90,6 +90,17 @@ void Tilemap::removeTile(sf::Vector2i gridPosition)
 	updateVertices();
 }
 
+Tile Tilemap::getTile(sf::Vector2i gridPosition)
+{
+	Tile tile = m_ArrayLevel[gridPosition.x + static_cast<size_t>(gridPosition.y) * m_LevelSize.x];
+
+	tile.GlobalPosition = sf::Vector2f(gridPosition);
+	tile.GlobalPosition.x *= m_TileSize.x;
+	tile.GlobalPosition.y *= m_TileSize.y;
+
+	return tile;
+}
+
 std::string Tilemap::levelToString()
 {
 	std::string result;

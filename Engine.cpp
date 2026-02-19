@@ -8,9 +8,9 @@ Engine::Engine() :
 	m_ColorBackground = sf::Color::Black;	
 
 	m_Tilemap.setFillTile(Tile{ -1 });
-	m_Tilemap.placeTile({ 12, 6 }, Tile { 59 });
+	m_Tilemap.placeTile( { 12, 6 }, Tile { 59 });
 
-	m_Tilemap.saveLevelToDisk();
+	//m_Tilemap.saveLevelToDisk();
 }
 
 void Engine::run()

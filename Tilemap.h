@@ -33,16 +33,17 @@ private:
 
     void updateVertices();
     void trimTilemap();
+    void increaseLevelSize(sf::Vector2u levelSize);
 
 public:	
     Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize);
     
-    void increaseLevelSize(sf::Vector2u levelSize);
     void setFillTile(Tile fillTile);
     void setTileSize(sf::Vector2u tileSize);
     
     void placeTile(sf::Vector2i gridPosition, Tile tile);
     void removeTile(sf::Vector2i gridPosition);
+    Tile getTile(sf::Vector2i gridPosition);
 
     void loadLevelFromDisk(std::string filepathLevel);
     void saveLevelToDisk();

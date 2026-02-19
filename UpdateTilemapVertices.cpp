@@ -11,8 +11,14 @@ void Tilemap::updateVertices()
 		for (int x = 0; x < m_LevelSize.x; ++x)
 		{
 			int TILE_INDEX = m_ArrayLevel[x + static_cast<size_t>(y) * m_LevelSize.x].Id;
+
 			if (TILE_INDEX == -1)
 			{
+				for (int i = 0; i < VERTICES_PER_TILE; ++i)
+				{
+					m_Vertices[currentVertex + i].position = {0, 0};
+					m_Vertices[currentVertex + i].color	   = sf::Color::Red;
+				}
 				currentVertex += VERTICES_PER_TILE;
 				continue;
 			}
