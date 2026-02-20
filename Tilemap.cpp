@@ -1,6 +1,7 @@
 #include "Tilemap.h"
 #include <iostream>
 #include <fstream>
+#include <cassert>
 
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
@@ -92,6 +93,8 @@ void Tilemap::removeTile(sf::Vector2i gridPosition)
 
 Tile Tilemap::getTile(sf::Vector2i gridPosition)
 {
+	assert(gridPosition.x >= 0 && gridPosition.x < m_LevelSize.x && gridPosition.y >= 0 && gridPosition.y < m_LevelSize.y);
+
 	Tile tile = m_ArrayLevel[gridPosition.x + static_cast<size_t>(gridPosition.y) * m_LevelSize.x];
 
 	tile.GlobalPosition = sf::Vector2f(gridPosition);

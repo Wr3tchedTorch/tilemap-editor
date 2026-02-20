@@ -9,7 +9,10 @@ void Tilemap::loadLevelFromDisk(std::string filepathLevel)
 	std::ifstream inputFile(m_FilepathLevel);
 	if (!inputFile.is_open())
 	{
-		std::cout << std::format("file `{}` not found!", m_FilepathLevel);
+		std::ofstream outfile(filepathLevel);
+
+		outfile.close();
+
 		return;
 	}
 

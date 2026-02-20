@@ -6,12 +6,6 @@ Engine::Engine() :
 	m_Tilemap(TextureHolder::GetTexture("graphics/tilemap.png"), "levels/test.dat", { 16, 16 }, { 18, 13 })
 {
 	m_ColorBackground = sf::Color::Black;	
-
-	m_Tilemap.setFillTile(Tile{ -1 });
-	m_Tilemap.placeTile( { 12, 6 }, Tile { 59 });
-	m_Tilemap.removeTile({ 12, 6 });
-
-	//m_Tilemap.saveLevelToDisk();
 }
 
 void Engine::run()
