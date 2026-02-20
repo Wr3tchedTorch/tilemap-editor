@@ -1,11 +1,16 @@
 #include "Engine.h"
 #include "imgui.h"
 #include "imgui-SFML.h"
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/VideoMode.hpp>
+#include <SFML/Window/WindowEnums.hpp>
 
-Engine::Engine() :
-	m_Tilemap(TextureHolder::GetTexture("graphics/tilemap.png"), "levels/test.dat", { 16, 16 }, { 18, 13 })
+Engine::Engine() : m_TilemapUI(m_Window)
 {
-	m_ColorBackground = sf::Color::Black;	
+	m_ColorBackground = sf::Color::Black;
 }
 
 void Engine::run()

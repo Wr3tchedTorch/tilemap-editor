@@ -13,23 +13,24 @@ private:
 	std::string  m_FilepathCurrentLevel;
 	std::string  m_FilepathTilemap;
 
-	sf::Texture* m_TextureTilemap;
+	sf::Texture* m_TextureTilemap = nullptr;
 
 	sf::Vector2u m_TileSize;
 	sf::Vector2u m_TilemapSize;
 
 	sf::Vector2i m_GridMousePosition;
-	int m_SelectedTileIndex;
+	int m_SelectedTileIndex = 0;
 
 	sf::IntRect  m_SelectedGridTiles;
 
 	std::vector<Tilemap> m_MapLayers;
 
-	int selectedLayerIndex = 0;
+	int m_SelectedLayerIndex = 0;
 
 	const sf::Window& m_Window;
 
 	void drawTilemapUI();
+	void updateSelectedGridSize();
 
 public:
 	TilemapUI(const sf::Window& window);

@@ -9,7 +9,7 @@ class Engine
 private:
 	TextureHolder m_TextureHolderSingleton;
 
-	Tilemap m_Tilemap;
+	TilemapUI m_TilemapUI;
 
 	sf::RenderWindow m_Window;
 	sf::View  m_MainView;

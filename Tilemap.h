@@ -53,6 +53,8 @@ public:
 
     void loadLevelFromDisk(std::string filepathLevel);
     void saveLevelToDisk();
+
+	std::string getLevelFilepath() const { return m_FilepathLevel; }
     
     std::string levelToString();
 };
