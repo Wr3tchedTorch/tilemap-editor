@@ -11,6 +11,9 @@
 Engine::Engine() : m_TilemapUI(m_Window)
 {
 	m_ColorBackground = sf::Color::Black;
+
+	m_TilemapUI.loadTilemap("graphics/tilemap.png", { 16, 16 }, { 18, 13 });
+	m_TilemapUI.addLayer("levels/layer1.dat");
 }
 
 void Engine::run()

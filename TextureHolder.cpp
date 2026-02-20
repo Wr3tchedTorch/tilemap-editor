@@ -1,4 +1,7 @@
 #include "TextureHolder.h"
+#include <cassert>
+#include <string>
+#include <SFML/Graphics/Texture.hpp>
 
 TextureHolder* TextureHolder::m_Instance = nullptr;
 
@@ -8,7 +11,7 @@ TextureHolder::TextureHolder()
 	m_Instance = this;
 }
 
-const sf::Texture& TextureHolder::GetTexture(const std::string& filepath)
+sf::Texture& TextureHolder::GetTexture(const std::string& filepath)
 {
 	auto& map = m_Instance->m_Textures;
 

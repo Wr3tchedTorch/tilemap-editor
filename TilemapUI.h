@@ -10,8 +10,8 @@
 class TilemapUI
 {
 private:
-	std::string  m_FilepathCurrentLevel;
-	std::string  m_FilepathTilemap;
+	std::string  m_FilepathCurrentLevel = "";
+	std::string  m_FilepathTilemap		= "";
 
 	sf::Texture* m_TextureTilemap = nullptr;
 
