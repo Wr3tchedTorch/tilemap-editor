@@ -11,7 +11,7 @@ TextureHolder::TextureHolder()
 	m_Instance = this;
 }
 
-sf::Texture& TextureHolder::GetTexture(const std::string& filepath)
+const sf::Texture& TextureHolder::GetTexture(const std::string& filepath)
 {
 	auto& map = m_Instance->m_Textures;
 

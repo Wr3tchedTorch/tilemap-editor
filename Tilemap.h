@@ -43,6 +43,7 @@ public:
     
     void setFillTile(Tile fillTile);
     void setTileSize(sf::Vector2u tileSize);
+    void setTilemapSize(sf::Vector2u tilemapSize);
     
     void removeTiles(sf::IntRect positions);
     void placeTiles(sf::IntRect positions, Tile tile);

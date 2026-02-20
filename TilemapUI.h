@@ -13,7 +13,7 @@ private:
 	std::string  m_FilepathCurrentLevel = "";
 	std::string  m_FilepathTilemap		= "";
 
-	sf::Texture* m_TextureTilemap = nullptr;
+	const sf::Texture* m_TextureTilemap = nullptr;
 
 	sf::Vector2u m_TileSize;
 	sf::Vector2u m_TilemapSize;
@@ -44,9 +44,12 @@ public:
 	void placeTiles(sf::FloatRect globalMousePosition);
 	void removeTiles(sf::FloatRect globalMousePosition);
 
-	void loadTilemap(std::string filepathTilemap, sf::Vector2u tileSize, sf::Vector2u tilemapSize);
-
+	void loadLayerFromDisk(std::string filepathLevel);
 	void addLayer(std::string filepathLayer);
+	void removeLayer(int index);
+	void switchLayers(int index, int other);
+
+	void loadTilemap(std::string filepathTilemap, sf::Vector2u tileSize, sf::Vector2u tilemapSize);
 	void saveCurrentLevel();
 	void closeCurrentLevel();
 

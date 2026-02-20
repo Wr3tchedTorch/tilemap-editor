@@ -2,6 +2,7 @@
 #include <string>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
+#include <algorithm>
 #include "TilemapUI.h"
 #include "imgui.h"
 #include "imgui-SFML.h"
@@ -68,6 +69,8 @@ void TilemapUI::loadTilemap(std::string filepathTilemap, sf::Vector2u tileSize, 
 	
 	m_TilemapSize = tilemapSize;
 	m_TileSize    = tileSize;
+
+	m_MapLayers.clear();
 }
 
 void TilemapUI::addLayer(std::string filepathLayer)
@@ -82,10 +85,41 @@ void TilemapUI::addLayer(std::string filepathLayer)
 	m_MapLayers.push_back(newTilemap);
 }
 
+void TilemapUI::removeLayer(int index)
+{
+	m_MapLayers.erase(m_MapLayers.begin() + index);
+}
+
+void TilemapUI::switchLayers(int index, int other)
+{
+	std::string firstFilepathLevel = m_MapLayers[index].getLevelFilepath();
+
+	m_MapLayers[index].loadLevelFromDisk(m_MapLayers[other].getLevelFilepath());
+	m_MapLayers[other].loadLevelFromDisk(firstFilepathLevel);
+}
+
+void TilemapUI::saveCurrentLevel()
+{
+	for (Tilemap& layer : m_MapLayers)
+	{
+		layer.saveLevelToDisk();
+	}
+}
+
+void TilemapUI::closeCurrentLevel()
+{
+	saveCurrentLevel();
+
+	m_FilepathCurrentLevel = "";
+	m_SelectedLayerIndex   = 0;
+
+	m_MapLayers.clear();
+}
+
 void TilemapUI::update(sf::Vector2f mapWorldPosition)
 {	
-	m_GridMousePosition.x = mapWorldPosition.x / m_TileSize.x;
-	m_GridMousePosition.y = mapWorldPosition.y / m_TileSize.y;
+	m_GridMousePosition.x = static_cast<int>(mapWorldPosition.x) / m_TileSize.x;
+	m_GridMousePosition.y = static_cast<int>(mapWorldPosition.y) / m_TileSize.y;
 }
 
 void TilemapUI::render()

@@ -1,8 +1,11 @@
 #include "Tilemap.h"
-#include <iostream>
-#include <fstream>
-#include <cassert>
 #include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <cassert>
+#include <string>
+#include <vector>
+#include "Tile.h"
 
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
@@ -56,6 +59,11 @@ void Tilemap::setFillTile(Tile fillTile)
 void Tilemap::setTileSize(sf::Vector2u tileSize)
 {
 	m_TileSize = tileSize;
+}
+
+void Tilemap::setTilemapSize(sf::Vector2u tilemapSize)
+{
+	m_TilemapSize = tilemapSize;
 }
 
 void Tilemap::removeTiles(sf::IntRect positions)

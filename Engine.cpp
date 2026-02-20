@@ -20,7 +20,8 @@ void Engine::run()
 {
 	sf::VideoMode vm = sf::VideoMode::getDesktopMode();
 	m_Window.create(vm, "Tilemap editor by Eric", sf::State::Fullscreen);
-	ImGui::SFML::Init(m_Window);
+	
+	static_cast<void>(ImGui::SFML::Init(m_Window));
 
 	m_MainView.setSize(sf::Vector2f(vm.size));
 	m_MainView.zoom(0.5f);

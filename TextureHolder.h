@@ -13,6 +13,6 @@ private:
 public:
 	TextureHolder();
 
-	static sf::Texture& GetTexture(const std::string& filepath);
+	const static sf::Texture& GetTexture(const std::string& filepath);
 };
 
