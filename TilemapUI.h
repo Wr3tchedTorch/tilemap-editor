@@ -6,6 +6,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
 #include <vector>
+#include <memory>
 
 class TilemapUI
 {
@@ -23,7 +24,7 @@ private:
 
 	sf::IntRect  m_SelectedGridTiles;
 
-	std::vector<Tilemap> m_MapLayers;
+	std::vector<std::unique_ptr<Tilemap>> m_MapLayers;
 
 	int m_SelectedLayerIndex = 0;
 

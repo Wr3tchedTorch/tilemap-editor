@@ -9,6 +9,7 @@
 #include "Tile.h"
 #include "Tilemap.h"
 #include "TextureHolder.h"
+#include <memory>
 
 TilemapUI::TilemapUI(const sf::Window& window) : m_Window(window)
 {
@@ -47,7 +48,7 @@ void TilemapUI::leftMouseButtonReleased()
 
 	updateSelectedGridSize();
 
-	m_MapLayers[m_SelectedLayerIndex].placeTiles(m_SelectedGridTiles, Tile{ m_SelectedTileIndex });
+	m_MapLayers[m_SelectedLayerIndex]->placeTiles(m_SelectedGridTiles, Tile{ m_SelectedTileIndex });
 }
 
 void TilemapUI::rightMouseButtonReleased()
@@ -59,7 +60,7 @@ void TilemapUI::rightMouseButtonReleased()
 
 	updateSelectedGridSize();
 
-	m_MapLayers[m_SelectedLayerIndex].removeTiles(m_SelectedGridTiles);
+	m_MapLayers[m_SelectedLayerIndex]->removeTiles(m_SelectedGridTiles);
 }
 
 void TilemapUI::loadTilemap(std::string filepathTilemap, sf::Vector2u tileSize, sf::Vector2u tilemapSize)
@@ -82,7 +83,7 @@ void TilemapUI::addLayer(std::string filepathLayer)
 		m_TilemapSize
 	);
 
-	m_MapLayers.push_back(newTilemap);
+	m_MapLayers.push_back(std::make_unique<Tilemap>(newTilemap));
 }
 
 void TilemapUI::removeLayer(int index)
@@ -92,17 +93,14 @@ void TilemapUI::removeLayer(int index)
 
 void TilemapUI::switchLayers(int index, int other)
 {
-	std::string firstFilepathLevel = m_MapLayers[index].getLevelFilepath();
-
-	m_MapLayers[index].loadLevelFromDisk(m_MapLayers[other].getLevelFilepath());
-	m_MapLayers[other].loadLevelFromDisk(firstFilepathLevel);
+	std::swap(m_MapLayers[index], m_MapLayers[other]);
 }
 
 void TilemapUI::saveCurrentLevel()
 {
-	for (Tilemap& layer : m_MapLayers)
+	for (auto& layer : m_MapLayers)
 	{
-		layer.saveLevelToDisk();
+		layer->saveLevelToDisk();
 	}
 }
 
@@ -128,7 +126,7 @@ void TilemapUI::render()
 	ImGui::Text(std::format("Tilemap size: (width: {}, height: {})", m_TilemapSize.x, m_TilemapSize.y).c_str());
 	ImGui::Text(std::format("Tile size: (width: {}, height: {})", m_TileSize.x, m_TileSize.y).c_str());
 	ImGui::Text(std::format("grid mouse position: (x: {}, y: {})", m_GridMousePosition.x, m_GridMousePosition.y).c_str());	
-	ImGui::Text(std::format("Selected layer: `{}`", m_MapLayers[m_SelectedLayerIndex].getLevelFilepath()).c_str());
+	ImGui::Text(std::format("Selected layer: `{}`", m_MapLayers[m_SelectedLayerIndex]->getLevelFilepath()).c_str());
 
 	if (m_FilepathTilemap.empty())
 	{
