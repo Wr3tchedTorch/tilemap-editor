@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <SFML/Graphics/Rect.hpp>
 
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
@@ -55,6 +56,40 @@ void Tilemap::setFillTile(Tile fillTile)
 void Tilemap::setTileSize(sf::Vector2u tileSize)
 {
 	m_TileSize = tileSize;
+}
+
+void Tilemap::removeTiles(sf::IntRect positions)
+{
+	int startX = positions.position.x;
+	int endX   = positions.position.x + positions.size.x;
+
+	int startY = positions.position.y;
+	int endY   = positions.position.y + positions.size.y;
+	
+	for (int y = startY; y < endY; ++y)
+	{
+		for (int x = startX; x < endX; ++x)
+		{
+			removeTile({x, y});
+		}
+	}
+}
+
+void Tilemap::placeTiles(sf::IntRect positions, Tile tile)
+{
+	int startX = positions.position.x;
+	int endX = positions.position.x + positions.size.x;
+
+	int startY = positions.position.y;
+	int endY = positions.position.y + positions.size.y;
+
+	for (int y = startY; y < endY; ++y)
+	{
+		for (int x = startX; x < endX; ++x)
+		{
+			placeTile({ x, y }, tile);
+		}
+	}
 }
 
 void Tilemap::placeTile(sf::Vector2i gridPosition, Tile tile)

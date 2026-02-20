@@ -1,5 +1,4 @@
 #include "Tilemap.h"
-#include <iostream>
 #include <fstream>
 
 void Tilemap::loadLevelFromDisk(std::string filepathLevel)

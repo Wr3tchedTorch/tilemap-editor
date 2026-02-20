@@ -4,7 +4,10 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <string>
 #include "Tile.h"
 
 class Tilemap : public sf::Drawable
@@ -41,6 +44,9 @@ public:
     void setFillTile(Tile fillTile);
     void setTileSize(sf::Vector2u tileSize);
     
+    void removeTiles(sf::IntRect positions);
+    void placeTiles(sf::IntRect positions, Tile tile);
+
     void placeTile(sf::Vector2i gridPosition, Tile tile);
     void removeTile(sf::Vector2i gridPosition);
     Tile getTile(sf::Vector2i gridPosition);

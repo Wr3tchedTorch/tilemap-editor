@@ -2,42 +2,41 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 #include "TextureHolder.h"
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <iostream>
+#include <format>
+#include <string>
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Window.hpp>
+#include "Tile.h"
 
-TilemapUI::TilemapUI(const sf::Window& window, std::string filepathTilemap, std::string filepathLevel) :
-	m_Window(window),
-	m_TextureTilemap(&TextureHolder::GetTexture(filepathTilemap))
+TilemapUI::TilemapUI(const sf::Window& window) : m_Window(window)
 {
 }
 
 void TilemapUI::leftMouseButtonPressed()
 {
-	//m_Tilemap.placeTile(m_GridMousePosition);
+	m_SelectedGridTiles = {
+		{
+			m_GridMousePosition.x,
+			m_GridMousePosition.y,
+		},
+		{ 1, 1 }
+	};
 }
 
-void TilemapUI::rightMouseButtonPressed()
+void TilemapUI::leftMouseButtonReleased()
 {
-	//m_Tilemap.removeTile(m_GridMousePosition);
-}
+	m_SelectedGridTiles.size = {
+		m_GridMousePosition.x - m_SelectedGridTiles.position.x,
+		m_GridMousePosition.y - m_SelectedGridTiles.position.y,
+	};
 
-void TilemapUI::loadTilemap(std::string filepathTilemap, int tileSize)
-{
-	m_TextureTilemap = &TextureHolder::GetTexture(filepathTilemap);
-	m_FilepathTilemap = filepathTilemap;
-
-	m_TileSize	  = tileSize;
-	m_TilemapSize = {
-		static_cast<int>(m_TextureTilemap->getSize().x) / m_TileSize,
-		static_cast<int>(m_TextureTilemap->getSize().y) / m_TileSize
-	};	
+	m_MapLayers[selectedLayerIndex].placeTiles(m_SelectedGridTiles, Tile{ m_SelectedTileIndex });
 }
 
 void TilemapUI::update(sf::Vector2f mapWorldPosition)
 {	
-	m_GridMousePosition.x = mapWorldPosition.x / m_TileSize;
-	m_GridMousePosition.y = mapWorldPosition.y / m_TileSize;
+	m_GridMousePosition.x = mapWorldPosition.x / m_TileSize.x;
+	m_GridMousePosition.y = mapWorldPosition.y / m_TileSize.y;
 }
 
 void TilemapUI::render()
