@@ -17,6 +17,8 @@ void Engine::draw()
 
 	m_Window.setView(m_MainView);
 
+	m_TilemapUI.drawTilemap();
+
 	ImGui::SFML::Render(m_Window);
 	m_Window.display();
 }

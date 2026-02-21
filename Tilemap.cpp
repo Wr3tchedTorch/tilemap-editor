@@ -10,7 +10,7 @@
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
 {	
-	m_FillTile.Id= 0;
+	m_FillTile.Id	= -1;
 	m_FilepathLevel = levelFilePath;
 	m_TilemapSize   = tilemapSize;
 

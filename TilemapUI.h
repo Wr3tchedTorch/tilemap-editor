@@ -4,9 +4,10 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <SFML/Window/Window.hpp>
 #include <vector>
 #include <memory>
+#include "imgui/imgui-SFML.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class TilemapUI
 {
@@ -26,15 +27,16 @@ private:
 
 	std::vector<std::unique_ptr<Tilemap>> m_MapLayers;
 
-	int m_SelectedLayerIndex = 0;
+	int  m_SelectedLayerIndex = 0;
+	bool m_IsMouseDragValid   = false;
 
-	const sf::Window& m_Window;
+	sf::RenderWindow& m_Window;
 
 	void drawTilemapUI();
 	void updateSelectedGridSize();
 
 public:
-	TilemapUI(const sf::Window& window);
+	TilemapUI(sf::RenderWindow& window);
 
 	void leftMouseButtonPressed();
 	void rightMouseButtonPressed();
@@ -57,5 +59,7 @@ public:
 	void update(sf::Vector2f mapWorldPosition);
 
 	void render();
+	void drawTilemap();
+	std::vector<std::unique_ptr<Tilemap>> getMapLayers();
 };
 

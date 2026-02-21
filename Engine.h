@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/View.hpp>
 #include "TextureHolder.h"
 #include "TilemapUI.h"
 

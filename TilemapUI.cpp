@@ -1,22 +1,28 @@
 #include <format>
 #include <string>
 #include <SFML/System/Vector2.hpp>
-#include <SFML/Window/Window.hpp>
-#include <algorithm>
+#include <memory>
 #include "TilemapUI.h"
 #include "imgui.h"
 #include "imgui-SFML.h"
 #include "Tile.h"
 #include "Tilemap.h"
 #include "TextureHolder.h"
-#include <memory>
+#include <iostream>
+#include <SFML/Graphics/RenderWindow.hpp>
 
-TilemapUI::TilemapUI(const sf::Window& window) : m_Window(window)
+TilemapUI::TilemapUI(sf::RenderWindow& window) : m_Window(window)
 {
 }
 
 void TilemapUI::leftMouseButtonPressed()
 {
+	if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow | ImGuiHoveredFlags_AllowWhenBlockedByActiveItem))
+	{
+		m_IsMouseDragValid = false;
+		return;
+	}
+
 	m_SelectedGridTiles = {
 		{
 			m_GridMousePosition.x,
@@ -24,6 +30,8 @@ void TilemapUI::leftMouseButtonPressed()
 		},
 		{ 1, 1 }
 	};
+
+	m_IsMouseDragValid = true;
 }
 
 void TilemapUI::rightMouseButtonPressed()
@@ -33,15 +41,30 @@ void TilemapUI::rightMouseButtonPressed()
 
 void TilemapUI::updateSelectedGridSize()
 {
-	m_SelectedGridTiles.size = {
-		m_GridMousePosition.x - m_SelectedGridTiles.position.x + 1,
-		m_GridMousePosition.y - m_SelectedGridTiles.position.y + 1,
-	};
+	if (m_SelectedGridTiles.position.x > m_GridMousePosition.x)
+	{
+		m_SelectedGridTiles.size.x     = m_SelectedGridTiles.position.x - m_GridMousePosition.x + 1;
+		m_SelectedGridTiles.position.x = m_GridMousePosition.x;
+	}
+	else
+	{
+		m_SelectedGridTiles.size.x = m_GridMousePosition.x - m_SelectedGridTiles.position.x + 1;
+	}
+
+	if (m_SelectedGridTiles.position.y > m_GridMousePosition.y)
+	{
+		m_SelectedGridTiles.size.y	   = m_SelectedGridTiles.position.y - m_GridMousePosition.y + 1;
+		m_SelectedGridTiles.position.y = m_GridMousePosition.y;
+	}
+	else
+	{
+		m_SelectedGridTiles.size.y = m_GridMousePosition.y - m_SelectedGridTiles.position.y + 1;
+	}
 }
 
 void TilemapUI::leftMouseButtonReleased()
 {
-	if (m_MapLayers.size() >= m_SelectedLayerIndex)
+	if (!m_IsMouseDragValid || m_SelectedLayerIndex >= m_MapLayers.size())
 	{
 		return;
 	}
@@ -53,7 +76,7 @@ void TilemapUI::leftMouseButtonReleased()
 
 void TilemapUI::rightMouseButtonReleased()
 {
-	if (m_MapLayers.size() >= m_SelectedLayerIndex)
+	if (!m_IsMouseDragValid || m_SelectedLayerIndex >= m_MapLayers.size())
 	{
 		return;
 	}
@@ -135,5 +158,13 @@ void TilemapUI::render()
 	}
 
 	drawTilemapUI();
+}
+
+void TilemapUI::drawTilemap()
+{
+	for (auto& layer : m_MapLayers)
+	{
+		m_Window.draw(*layer);
+	}
 }
 
