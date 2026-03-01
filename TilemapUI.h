@@ -25,7 +25,7 @@ private:
 
 	sf::IntRect  m_SelectedGridTiles;
 
-	std::vector<std::unique_ptr<Tilemap>> m_MapLayers;
+	std::vector<std::shared_ptr<Tilemap>> m_MapLayers;
 
 	int  m_SelectedLayerIndex = 0;
 	bool m_IsMouseDragValid   = false;
@@ -60,6 +60,6 @@ public:
 
 	void render();
 	void drawTilemap();
-	std::vector<std::unique_ptr<Tilemap>> getMapLayers();
+	std::vector<std::shared_ptr<Tilemap>> getMapLayers();
 };
 

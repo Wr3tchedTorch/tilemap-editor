@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "Tile.h"
+#include <algorithm>
 
 Tilemap::Tilemap(const sf::Texture& texture, std::string levelFilePath, sf::Vector2u tileSize, sf::Vector2u tilemapSize) :
 	m_Texture(texture)
@@ -73,7 +74,13 @@ void Tilemap::removeTiles(sf::IntRect positions)
 
 	int startY = positions.position.y;
 	int endY   = positions.position.y + positions.size.y;
-	
+
+	startX = std::max(std::min(startX, static_cast<int>(m_LevelSize.x)), 0);
+	endX   = std::max(std::min(endX, static_cast<int>(m_LevelSize.x)),   0);
+
+	startY = std::max(std::min(startY, static_cast<int>(m_LevelSize.y)), 0);
+	endY   = std::max(std::min(endY,   static_cast<int>(m_LevelSize.y)), 0);
+
 	for (int y = startY; y < endY; ++y)
 	{
 		for (int x = startX; x < endX; ++x)
@@ -90,6 +97,11 @@ void Tilemap::placeTiles(sf::IntRect positions, Tile tile)
 
 	int startY = positions.position.y;
 	int endY = positions.position.y + positions.size.y;
+
+	startX = std::max(startX, 0);
+	endX   = std::max(endX,   0);
+	startY = std::max(startY, 0);
+	endY   = std::max(endY,   0);
 
 	for (int y = startY; y < endY; ++y)
 	{

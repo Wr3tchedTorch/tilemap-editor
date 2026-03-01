@@ -139,8 +139,8 @@ void TilemapUI::closeCurrentLevel()
 
 void TilemapUI::update(sf::Vector2f mapWorldPosition)
 {	
-	m_GridMousePosition.x = static_cast<int>(mapWorldPosition.x) / m_TileSize.x;
-	m_GridMousePosition.y = static_cast<int>(mapWorldPosition.y) / m_TileSize.y;
+	m_GridMousePosition.x = mapWorldPosition.x / static_cast<int>(m_TileSize.x);
+	m_GridMousePosition.y = mapWorldPosition.y / static_cast<int>(m_TileSize.y);
 }
 
 void TilemapUI::render()
