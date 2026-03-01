@@ -2,14 +2,14 @@
 #include <string>
 #include <SFML/System/Vector2.hpp>
 #include <memory>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "TilemapUI.h"
 #include "imgui.h"
-#include "imgui-SFML.h"
 #include "Tile.h"
 #include "Tilemap.h"
 #include "TextureHolder.h"
-#include <iostream>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include "imgui_stdlib.h"
+#include <cstdio>
 
 TilemapUI::TilemapUI(sf::RenderWindow& window) : m_Window(window)
 {
@@ -150,11 +150,13 @@ void TilemapUI::render()
 	ImGui::Text(std::format("Tile size: (width: {}, height: {})", m_TileSize.x, m_TileSize.y).c_str());
 	ImGui::Text(std::format("grid mouse position: (x: {}, y: {})", m_GridMousePosition.x, m_GridMousePosition.y).c_str());	
 	ImGui::Text(std::format("Selected layer: `{}`", m_MapLayers[m_SelectedLayerIndex]->getLevelFilepath()).c_str());
+	ImGui::Button("Save Tilemap");
 
-	if (m_FilepathTilemap.empty())
+	static std::string myText = "";
+
+	if (ImGui::InputText("Enter Name", &myText))
 	{
-		ImGui::Text(std::format("No tilemap selected!").c_str());
-		return;
+		printf("Current content: %s\n", myText.c_str());
 	}
 
 	drawTilemapUI();

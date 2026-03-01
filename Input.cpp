@@ -30,7 +30,10 @@ void Engine::input()
 				m_MainView.zoom(1.1f);
 			}
 
-			if (keyPressed->scancode == sf::Keyboard::Scancode::W)
+			if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow | ImGuiHoveredFlags_AllowWhenBlockedByActiveItem))
+			{
+			}
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::W)
 			{
 				m_MainView.move({0, -20});
 			}
@@ -38,8 +41,7 @@ void Engine::input()
 			{
 				m_MainView.move({ 0, 20 });
 			}
-
-			if (keyPressed->scancode == sf::Keyboard::Scancode::A)
+			else if (keyPressed->scancode == sf::Keyboard::Scancode::A)
 			{
 				m_MainView.move({ -20, 0 });
 			}

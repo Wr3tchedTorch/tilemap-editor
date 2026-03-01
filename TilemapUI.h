@@ -6,7 +6,6 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <memory>
-#include "imgui/imgui-SFML.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class TilemapUI

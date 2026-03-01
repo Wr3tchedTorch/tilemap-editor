@@ -96,6 +96,9 @@
     <ClCompile Include="UpdateTilemapVertices.cpp">
       <Filter>Source Files\Engine\Editor\Tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="imgui_stdlib.cpp">
+      <Filter>Source Files\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -139,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="TilemapUI.h">
       <Filter>Header Files\Engine\Editor\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_stdlib.h">
+      <Filter>Header Files\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
